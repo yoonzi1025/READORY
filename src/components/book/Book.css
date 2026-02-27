@@ -1,0 +1,136 @@
+.book-list {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 30px;
+  background-color: #8a94a3;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-bar {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.sort-select {
+  margin-left: auto;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #dfe3e8;
+  background-color: white;
+  font-size: 14px;
+  color: #1e2530;
+  cursor: pointer;
+  outline: none;
+}
+
+.list-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+  overflow: visible;
+}
+
+/* .book-card {
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+  min-height: 200px;
+  justify-self: center;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  background-color: antiquewhite;
+  position: relative;
+} */
+
+/***********************************************************/
+/* bookInfo */
+.book-card {
+  position: relative;
+  overflow: visible;
+  padding-left: 130px;
+  display: flex;
+  background: white;
+  min-height: 200px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 100%;
+  justify-self: center;
+}
+
+.book-cover {
+  width: 95px;
+  height: 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f5f8;
+  border: 1px solid #1e2530;
+  position: absolute;
+  top: 20%;
+  left: 16px;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.book-content {
+  flex: 1;
+  padding: 14px 14px 14px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.book-author {
+  font-size: 13px;
+  color: #8a94a3;
+  margin: 0;
+}
+
+/* .book-info {
+  border: 1px solid #ccc;
+} */
+
+.book-more {
+  margin: auto 10px 10px 0;
+  justify-content: center;
+}
+
+.more-btn {
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid #dfe3e8;
+  background: white;
+  color: #1e2530;
+}
+
+.more-btn:hover {
+  background: #ffc107;
+  color: white;
+  border-color: #ffc107;
+}
