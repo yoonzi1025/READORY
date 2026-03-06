@@ -1,0 +1,98 @@
+.record-wrapper,
+.record-empty {
+  margin-top: 30px;
+}
+
+.record-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3a36;
+  margin-bottom: 4px;
+}
+
+.record-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.record-card {
+  background-color: white;
+  border: 1.5px solid #e8f0ed;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.record-card:hover {
+  box-shadow: 0 4px 16px rgba(76, 205, 158, 0.1);
+}
+
+.record-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.record-card-date {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0aeaa;
+}
+
+.record-card-btn {
+  display: flex;
+  gap: 6px;
+}
+
+.record-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1.5px solid #e0ece8;
+  background-color: white;
+  color: #6b8078;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.action-btn:hover {
+  background-color: #f0faf6;
+  border-color: #4ccd9e;
+  color: #2ea87a;
+}
+.action-btn--delete:hover {
+  background-color: #fff5f5;
+  border-color: #ffb3b3;
+  color: #e05555;
+}
+
+.record-card-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.record-card-status {
+  font-size: 11px;
+  font-weight: 600;
+  color: #4ccd9e;
+  background: #edfaf4;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.record-card-period {
+  font-size: 11px;
+  color: #a0aeaa;
+}
+
+.record-card-comment {
+  font-size: 13px;
+  color: #3d4f49;
+  line-height: 1.6;
+}

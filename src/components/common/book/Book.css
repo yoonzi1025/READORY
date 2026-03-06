@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100vh;
   padding-bottom: 30px;
-  background-color: #8a94a3;
+  background-color: #f8f8f8;
 }
 
 .menu-bar {
@@ -46,7 +46,7 @@
   overflow: visible;
   padding-left: 130px;
   display: flex;
-  background: white;
+  background-color: white;
   min-height: 200px;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
   max-width: 400px;
@@ -152,11 +152,12 @@
   padding: 20px 16px 0;
 }
 
-.book-content-section {
+.book-content-section,
+.record-section {
   display: flex;
   gap: 32px;
   padding: 32px 32px 24px;
-  background-color: #eee;
+  background-color: #f8f8f8;
 }
 
 .cover-img {
@@ -164,7 +165,7 @@
   width: 180px;
   height: 255px;
   overflow: hidden;
-  background: #c8d5b0;
+  background-color: #c8d5b0;
   position: relative;
 }
 
@@ -185,12 +186,12 @@
 .btn-container {
   display: flex;
   align-items: center;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
   position: relative;
 }
 
-.btn-container .btn {
+.btn-container .btn-info {
   flex: 1;
   display: flex;
   align-items: center;

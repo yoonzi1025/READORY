@@ -1,0 +1,23 @@
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #4ccd9e;
+  background-color: #edfaf4;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+.status-reading {
+  color: rgb(220, 118, 118);
+  background-color: rgb(235, 194, 195);
+}
+
+.status-want {
+  color: rgb(229, 207, 125);
+  background-color: rgb(237, 228, 182);
+}
+
+.status-stopped {
+  color: rgb(85, 139, 216);
+  background-color: rgb(117, 200, 232);
+}
