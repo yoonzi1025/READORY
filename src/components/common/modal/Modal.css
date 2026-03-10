@@ -74,9 +74,19 @@ body.modal-open {
   margin-bottom: 20px;
 }
 
+.btn-status.readonly {
+  cursor: default;
+}
+
+.btn-status:not(.readonly):hover {
+  background-color: #eee;
+  border-color: #b0b0b0;
+  transform: translateY(-1px);
+}
+
 .btn-status {
-  background: #eee;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #f5f5f5;
+  border: 1px solid transparent;
   border-radius: 14px;
   padding: 12px 4px;
   display: flex;
@@ -84,18 +94,13 @@ body.modal-open {
   align-items: center;
   gap: 5px;
   cursor: pointer;
-  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
 .btn-status::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(46, 45, 45, 0.15);
-  opacity: 0;
-  transition: opacity 0.2s;
+  display: none;
 }
 
 .btn-status:hover::after {
@@ -103,8 +108,9 @@ body.modal-open {
 }
 
 .btn-status.active {
-  border-color: #ffc107;
-  box-shadow: 0 0 14px #ffc107, inset #ffc107;
+  background-color: #e0e0e0;
+  border-color: #1a1a1a;
+  box-shadow: inset 0 0 0 1px #1a1a1a;
   transform: translateY(-2px);
 }
 
@@ -117,16 +123,30 @@ body.modal-open {
   transition: transform 0.22s;
 }
 
-.btn-status.active .btn-status-icon {
-  transform: scale(1.15);
-}
-
 .btn-status-label {
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #9a9fa8;
   text-align: center;
   line-height: 1.3;
+}
+
+.btn-status-sub {
+  font-size: 14px;
+  color: #5a5f68;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.btn-status.active .btn-status-label {
+  color: #1a1a1a;
+  font-weight: 700;
+  border-color: #b0b0b0;
+  transform: translateY(-2px);
+}
+
+.btn-status.active .btn-status-sub {
+  color: #666;
 }
 
 .divider {
@@ -135,18 +155,7 @@ body.modal-open {
   margin: 4px 0 20px;
 }
 
-.btn-status-sub {
-  font-size: 9px;
-  color: #5a5f68;
-  text-align: center;
-  line-height: 1.2;
-}
-
-.btn-status.active .bnt-status-sub {
-  color: #ffc107;
-}
-
-.datd-section {
+.date-section {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1.2px;
@@ -194,7 +203,14 @@ body.modal-open {
   padding: 10px 13px;
   font-size: 13px;
   outline: none;
-  border: none;
+  border: 1.5px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.date-field input[type="date"]:focus {
+  border-color: #b0b0b0;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  background: #e8e8e8;
 }
 
 .reading-status-box {
@@ -206,11 +222,6 @@ body.modal-open {
   color: #5a5f68;
   font-weight: 700;
   margin-top: 22px;
-}
-
-.date-field input[type="date"]:focus {
-  border-color: #ffc107;
-  box-shadow: #ffc107;
 }
 
 .rating-section {
@@ -246,8 +257,9 @@ body.modal-open {
 
 .textarea {
   width: 100%;
-  background: #eee;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  margin-bottom: 10px;
+  background-color: #eee;
+  border: 1px solid transparent;
   border-radius: 8px;
   padding: 12px 13px;
   color: #5a5f68;
@@ -255,7 +267,13 @@ body.modal-open {
   resize: none;
   outline: none;
   line-height: 1.6;
-  min-height: 88px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.textarea:focus {
+  border-color: #b0b0b0;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  background: #e8e8e8;
 }
 
 .textarea::placeholder {
@@ -271,11 +289,27 @@ body.modal-open {
 .btn-section button {
   flex: 1;
   color: #5a5f68;
-  background: #eee;
+  background-color: #eee;
   border: none;
   border-color: #eee;
   font-size: 15px;
   font-weight: 700;
   border-radius: 14px;
   padding: 15px;
+  transition: all 0.18s;
+  cursor: pointer;
+}
+
+.btn-section button:first-child:hover {
+  background-color: #e8e8e8;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.btn-section button:last-child:hover {
+  background-color: #d0d0d0;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.18s;
 }

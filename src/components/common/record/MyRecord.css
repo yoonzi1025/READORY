@@ -35,16 +35,26 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid #f0f0f0;
+}
+
+.record-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e2530;
+}
+
+.record-card-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .record-card-date {
   font-size: 12px;
   font-weight: 600;
   color: #a0aeaa;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #eaf1ee;
-  margin-bottom: 4px;
 }
 
 .record-card-btn {
@@ -64,12 +74,12 @@
   transition: all 0.18s;
 }
 
-.action-btn:hover {
-  background-color: #f0faf6;
-  border-color: #4ccd9e;
-  color: #2ea87a;
+.record-btn:hover {
+  background-color: #f0f7ff;
+  border-color: #5c7cfa;
+  color: #5c7cfa;
 }
-.action-btn--delete:hover {
+.record-btn.btn-delete:hover {
   background-color: #fff5f5;
   border-color: #ffb3b3;
   color: #e05555;
@@ -81,24 +91,27 @@
   gap: 8px;
 }
 
-.record-card-status {
+/* .record-card-status {
   font-size: 11px;
   font-weight: 600;
   color: #4ccd9e;
-  background: #edfaf4;
+  background: red;
   border-radius: 20px;
   padding: 3px 10px;
-}
+} */
 
 .record-card-period {
-  font-size: 11px;
+  font-size: 12px;
   color: #a0aeaa;
 }
 
 .record-card-comment {
-  font-size: 13px;
+  font-size: 14px;
   color: #3d4f49;
-  line-height: 1.6;
+  line-height: 1.8;
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 14px 16px;
 }
 
 .record-empty {

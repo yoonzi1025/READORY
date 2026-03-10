@@ -102,6 +102,7 @@ const BookDetailInfo = ({ book }) => {
               onClose={handleClose}
               onSubmit={onSubmit}
               initData={editingRecord}
+              mode={editingRecord ? "edit" : "create"}
             />
             <div className="book-summary">
               <div className="summary-title">{book.title}</div>

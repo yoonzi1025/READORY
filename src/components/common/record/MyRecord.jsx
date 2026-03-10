@@ -8,18 +8,20 @@ const MyRecord = ({ currentRecord, onClickUpdate, onClickDelete }) => {
 
   return (
     <div className="record-card">
-      <div className="record-title">독서기록</div>
       <div className="record-card-header">
-        <span className="record-card-date">
-          {formatDate(currentRecord.createdDate)}
-        </span>
-        <div className="record-card-btn">
-          <button className="record-btn" onClick={onClickUpdate}>
-            수정
-          </button>
-          <button className="record-btn btn-delete" onClick={onClickDelete}>
-            삭제
-          </button>
+        <div className="record-title">독서기록</div>
+        <div className="record-card-right">
+          <span className="record-card-date">
+            {formatDate(currentRecord.createdDate)}
+          </span>
+          <div className="record-card-btn">
+            <button className="record-btn" onClick={onClickUpdate}>
+              수정
+            </button>
+            <button className="record-btn btn-delete" onClick={onClickDelete}>
+              삭제
+            </button>
+          </div>
         </div>
       </div>
 
@@ -44,7 +46,8 @@ const MyRecord = ({ currentRecord, onClickUpdate, onClickDelete }) => {
         <Rating rating={currentRecord.rating} />
       )}
 
-      {(currentRecord.status === "done" || status === "stopped") && (
+      {(currentRecord.status === "done" ||
+        currentRecord.status === "stopped") && (
         <div className="record-card-comment">{currentRecord.comment}</div>
       )}
     </div>

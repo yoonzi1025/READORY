@@ -9,7 +9,7 @@ const MyLibraryBookCard = ({ filterBooks, onClickBookCard }) => {
           <div
             className="library-book-card"
             key={book.id}
-            onClick={() => onClickBookCard(filterBooks)}
+            onClick={() => onClickBookCard(book)}
           >
             <div className="library-book-cover">
               <img src={book.cover} alt="책 이미지" />

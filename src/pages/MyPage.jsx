@@ -1,26 +1,31 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Navbar from "../components/common/navbar/Navbar";
-import MyLibrarySection from "../components/common/record/MyLibrarySection";
-import StatusTap from "../components/common/record/StatusTap";
-import { MOCK_BOOKS } from "../constants/mockBooks";
+import MyLibrarySection from "../components/common/library/MyLibrarySection";
+import StatusTap from "../components/common/library/StatusTap";
 import Modal from "../components/common/modal/Modal";
+import { RecordStateContext } from "../context/records/RecordProvider";
+import { BookStateContext } from "../context/books/BooksProvider";
+import { booksWithRecords } from "../util/BooksWithRecords";
 
 const MyPage = () => {
-  const books = MOCK_BOOKS;
+  const books = useContext(BookStateContext);
+  const records = useContext(RecordStateContext);
+
   const [activeTab, setActiveTab] = useState("all");
   const [open, setOpen] = useState(false);
   // 현재 기록넣기
   const [editingRecord, setEditingRecord] = useState(null);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const bookRecordList = booksWithRecords(books, records);
 
   const onTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  /* 탭 필터 */
   const filterBooks =
     activeTab === "all"
-      ? books
-      : books.filter((book) => book.status === activeTab);
+      ? bookRecordList
+      : bookRecordList.filter((book) => book.status === activeTab);
 
   const handleOpen = () => {
     setOpen(true);
@@ -29,25 +34,10 @@ const MyPage = () => {
   const handleClose = () => setOpen(false);
 
   const onClickBookCard = (book) => {
-    setEditingRecord({
-      status: book.status || "",
-      startDate: "",
-      endDate: "",
-      rating: 0,
-      comment: "",
-    });
-
+    setEditingRecord(book.record || null);
     handleOpen();
   };
 
-  const onSubmit = (recordData) => {
-    console.log("MyPage modal submit:", {
-      selectedBook,
-      recordData,
-    });
-
-    handleClose();
-  };
   return (
     <div>
       <Navbar />
@@ -59,8 +49,8 @@ const MyPage = () => {
       <Modal
         open={open}
         onClose={handleClose}
-        onSubmit={onSubmit}
         initData={editingRecord}
+        mode="view"
       />
     </div>
   );

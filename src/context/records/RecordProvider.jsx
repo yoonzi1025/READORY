@@ -95,10 +95,28 @@ export default function RecordProvider({ children }) {
     });
   };
 
-  const onUpdate = ({ id, status, rating, comment, createdDate }) => {
+  const onUpdate = ({
+    id,
+    bookId,
+    status,
+    rating,
+    comment,
+    startDate,
+    endDate,
+    createdDate,
+  }) => {
     dispatch({
       type: "UPDATE",
-      data: { id, status, rating, comment, createdDate },
+      data: {
+        id,
+        bookId,
+        status,
+        rating,
+        comment,
+        startDate,
+        endDate,
+        createdDate,
+      },
     });
   };
 

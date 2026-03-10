@@ -5,12 +5,15 @@ import { STATUS_OPTIONS } from "../../../constants/statusOption";
 import { STATUS_ICONS } from "../../../constants/statusIcon";
 import Rating from "../rating/Rating";
 
-const Modal = ({ open, onClose, onSubmit, initData }) => {
+const Modal = ({ open, onClose, onSubmit, initData, mode = "create" }) => {
   const [status, setStatus] = useState("reading");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+
+  const isViewMode = mode === "view";
+  const isEditMode = mode === "edit";
 
   useEffect(() => {
     if (!open) return;
@@ -20,41 +23,46 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
 
   useEffect(() => {
     if (!open) return;
-
+    console.log("Modal initData:", initData);
     if (initData) {
-      setStatus(initData.status || "");
-      setStartDate(initData.startDate || "");
-      setEndDate(initData.endDate || "");
+      setStatus(initData.status || "reading");
       setRating(initData.rating || 0);
       setComment(initData.comment || "");
+      setStartDate(initData.startDate || "");
+      setEndDate(initData.endDate || "");
     } else {
-      setStatus("");
-      setStartDate("");
-      setEndDate("");
+      setStatus("reading");
       setRating(0);
       setComment("");
+      setStartDate("");
+      setEndDate("");
     }
   }, [open, initData]);
 
   if (!open) return null;
 
   const getStartDate = (e) => {
+    if (isViewMode) return;
     setStartDate(e.target.value);
   };
 
   const getEndDate = (e) => {
+    if (isViewMode) return;
     setEndDate(e.target.value);
   };
 
   const onClickStar = (star) => {
+    if (isViewMode) return;
     setRating(star);
   };
 
   const onChangComment = (e) => {
+    if (isViewMode) return;
     setComment(e.target.value);
   };
 
   const onClickSubmitBtn = () => {
+    if (isViewMode || !onSubmit) return;
     onSubmit({
       status,
       rating,
@@ -64,13 +72,22 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
     });
   };
 
+  const getModalTitle = () => {
+    if (isViewMode) return "독서 기록";
+    if (isEditMode) return "독서 기록 수정";
+    return "독서 기록 작성";
+  };
+
+  const getSubmitLabel = () => {
+    if (isEditMode) return "수정하기";
+    return "저장하기";
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <div className="modal-title">
-            {initData ? "독서 기록 수정" : "독서 기록 작성"}
-          </div>
+          <div className="modal-title">{getModalTitle()}</div>
           <div
             className="btn-close"
             style={{ display: "flex", cursor: "pointer" }}
@@ -88,9 +105,12 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
                 <div
                   className={`btn-status ${
                     status === option.key ? "active" : ""
-                  }`}
+                  } ${isViewMode ? "readonly" : ""}`}
                   key={option.key}
-                  onClick={() => setStatus(option.key)}
+                  onClick={() => {
+                    if (isViewMode) return;
+                    setStatus(option.key);
+                  }}
                 >
                   <div className="btn-status-icon">
                     <Icon />
@@ -101,9 +121,17 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
               );
             })}
           </div>
+
+          {status === "want" && (
+            <textarea
+              className="textarea"
+              placeholder="아직 독서를 시작하지 않았어요."
+            />
+          )}
+
           {status !== "want" && (
             <>
-              <div className="datd-section">독서 기간</div>
+              <div className="date-section">독서 기간</div>
               <div className="date">
                 <div className="date-field">
                   <label>시작일</label>
@@ -111,6 +139,7 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
                     type="date"
                     value={startDate}
                     onChange={getStartDate}
+                    disabled={isViewMode}
                   />
                 </div>
 
@@ -120,7 +149,12 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
                 ) : (
                   <div className="date-field">
                     <label>종료일</label>
-                    <input type="date" value={endDate} onChange={getEndDate} />
+                    <input
+                      type="date"
+                      value={endDate}
+                      onChange={getEndDate}
+                      disabled={isViewMode}
+                    />
                   </div>
                 )}
               </div>
@@ -145,17 +179,20 @@ const Modal = ({ open, onClose, onSubmit, initData }) => {
                 placeholder="짧은 감상평을 남겨보세요."
                 maxLength={500}
                 rows={3}
+                readOnly={isViewMode}
               />
             </div>
           )}
 
           <div className="btn-section">
             <button className="btn-close" onClick={onClose}>
-              취소하기
+              {isViewMode ? "닫기" : "취소하기"}
             </button>
-            <button className="btn-save" onClick={onClickSubmitBtn}>
-              {initData ? "수정하기" : "저장하기"}
-            </button>
+            {!isViewMode && (
+              <button className="btn-save" onClick={onClickSubmitBtn}>
+                {getSubmitLabel()}
+              </button>
+            )}
           </div>
         </div>
       </div>
